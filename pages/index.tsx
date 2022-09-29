@@ -11,7 +11,7 @@ import { GetStaticProps } from 'next'
 import styles from '../styles/layout.module.css'
 
 export default function Home({
-  allPostsData
+  allPostsData,
 }: {
   allPostsData: {
     date: string
@@ -36,32 +36,30 @@ export default function Home({
         <div className={styles.dimmer}></div>
         <div className={styles.caption}>
           <h1 className={styles.title}>Jesper Ravn Jørgensen</h1>
-          <p className={styles.subtitle}>Software Developer - PHP - Next.js - Svelte</p>
+          <p className={styles.subtitle}>
+            Software Developer : Scrum master : Azure Manager
+          </p>
+          <p className={styles.subtitle}>PHP - C# - Next.js - Node.js - TypeScript</p>
         </div>
       </div>
       <div className={styles.container}>
-        <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-          <Header text="My Blog" />
-          <h5>Client side fetch: </h5>
-          {/* /components/getApiClientSide with react useEffect */}
-          <p>Here was once a api fetch</p>
-          <div>
-            <MyButton />
-          </div>
-          <h2 className={utilStyles.headingLg}>Blog</h2>
-          <ul className={utilStyles.list}>
-            {allPostsData.map(({ id, date, title }) => (
-              <li className={utilStyles.listItem} key={id}>
-                <Link href={`/posts/${id}`}>
-                  <a>{title}</a>
-                </Link>
-                <br />
-                <small className={utilStyles.lightText}>
-                  <Date dateString={date} />
-                </small>
-              </li>
-            ))}
-          </ul>
+        <section
+          className={`${utilStyles.headingMd} ${utilStyles.columnFlexCenter} ${utilStyles.sectionBackground}`}
+        >
+          <Header text="introduction to me" />
+          <Image
+            priority
+            src="/images/profile.jpg"
+            className={utilStyles.borderCircle}
+            layout="fixed"
+            height={144}
+            width={144}
+            alt={'profile picture'}
+          />
+          <p>I am a senior developer who has using most of my professional life working in PHP and frontend frameworks like Angular and React</p>
+          <p>But this site i for now purely made in Next.js</p>
+          <p>And i am currently working on a new project in C# and .NET Core, which is based on microservice architecture and serverless function</p>
+          <p>Feel free to catch me on <a href="mailto:jspr.ravn@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Go To Social Media: email">jspr.ravn@gmail.com</a></p>
         </section>
       </div>
     </Layout>
@@ -74,7 +72,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      allPostsData
+      allPostsData,
     },
   }
 }

@@ -1,7 +1,9 @@
 import React from 'react'
+import utilStyles from '../styles/utils.module.css'
 
 function Header({ text }) {
-  return <h1>{text}</h1>
+  text = text.toUpperCase();
+  return <h2 className={utilStyles.headerThin}>{text}</h2>
 }
 
 export default Header
