@@ -1,26 +1,13 @@
 import Head from 'next/head'
-import Layout, { siteTitle } from '../components/layout'
+import { siteTitle } from '../components/layout'
 import Header from '../components/Header'
-import MyButton from '../components/MyButton'
 import utilStyles from '../styles/utils.module.css'
-import { getSortedPostsData } from '../lib/posts'
-import Link from 'next/link'
-import Date from '../components/date'
 import Image from 'next/image'
-import { GetStaticProps } from 'next'
 import styles from '../styles/layout.module.css'
 
-export default function Home({
-  allPostsData,
-}: {
-  allPostsData: {
-    date: string
-    title: string
-    id: string
-  }[]
-}) {
+export default function Home() {
   return (
-    <Layout>
+    <>
       <Head>
         <title>{siteTitle}</title>
       </Head>
@@ -57,22 +44,11 @@ export default function Home({
             alt={'profile picture'}
           />
           <p>I am a senior developer who has using most of my professional life working in PHP and frontend frameworks like Angular and React</p>
-          <p>But this site i for now purely made in Next.js</p>
+          <p>But this site is for now purely made in Next.js</p>
           <p>And i am currently working on a new project in C# and .NET Core, which is based on microservice architecture and serverless function</p>
           <p>Feel free to catch me on <a href="mailto:jspr.ravn@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Go To Social Media: email">jspr.ravn@gmail.com</a></p>
         </section>
       </div>
-    </Layout>
+    </>
   )
-}
-
-// on build
-export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData = getSortedPostsData()
-
-  return {
-    props: {
-      allPostsData,
-    },
-  }
 }

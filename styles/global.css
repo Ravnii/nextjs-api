@@ -2,7 +2,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   line-height: 1.6;
   font-size: 18px;
 }
@@ -20,3 +21,56 @@ a:hover {
   text-decoration: underline;
 }
 
+.nav_container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: transparent;
+  z-index: 9999;
+}
+
+.nav_container-effect {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+  background-color: #fff;
+  box-shadow: 0 5px 20px -10px #000;
+}
+
+.nav_items {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  padding: 0 1rem;
+  padding: 10px 15px 10px 50px;
+  font-weight: 200;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+}
+
+.nav_items a.nav_item_active {
+  font-weight: 600;
+}
+
+.nav_item{
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav_item:hover {
+  color: #c29500;
+  text-decoration: underline;
+}
+
+.nav_item_effect {
+  color: #000;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav_item_effect:hover {
+  color: #c29500;
+  text-decoration: underline;
+}

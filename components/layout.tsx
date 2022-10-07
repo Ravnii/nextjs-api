@@ -1,9 +1,13 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router';
+import Navbar from './Navbar'
 
 const name = 'Jesper Ravn'
 export const siteTitle = 'Jesper Ravn Jørgensen - Software Developer'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
+
   return (
     <>
       <Head>
@@ -21,7 +25,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <main>{children}</main>
+      <Navbar/>
+      {children}
     </>
   )
 }
