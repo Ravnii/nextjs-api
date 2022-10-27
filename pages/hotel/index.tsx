@@ -1,8 +1,6 @@
 import Head from 'next/head'
 import React, { useState } from 'react'
 import DatePicker from 'react-datepicker'
-import Jumbotron from '../../components/Jumbotron'
-import styles from '../../styles/hotel.module.css'
 import 'react-datepicker/dist/react-datepicker.css'
 
 export default function Hotel() {
@@ -27,16 +25,9 @@ export default function Hotel() {
       <Head>
         <title>Book et værelse</title>
       </Head>
-      <div className={styles.flex_container}>
-        <Jumbotron
-          headline="Book et værelse på hotel Sandbjergvej 2"
-          src="/images/hotel.jpg"
-          alt="hotel banner"
-          width={3200}
-          height={1200}
-        />
-        <div className={styles.flex_section}>
-          <div className={styles.checkBox}>
+      <div>
+        <div>
+          <div>
             <div>
               <label htmlFor="name">Navn</label>
               <input type="text" id="name" name="name" onChange={(e) => setName(e.currentTarget.value)} />
@@ -50,7 +41,7 @@ export default function Hotel() {
               <input type="email" id="email" name="email" onChange={(e) => setEmail(e.currentTarget.value)} />
             </div>
           </div>
-          <div className={styles.checkBox}>
+          <div>
             <span>Check ind</span>
             <DatePicker
               selected={startDate}
@@ -58,7 +49,7 @@ export default function Hotel() {
               dateFormat="dd/MM/yyyy"
             />
           </div>
-          <div className={styles.checkBox}>
+          <div>
             <span>Check ud</span>
             <DatePicker
               selected={endDate}
@@ -67,10 +58,10 @@ export default function Hotel() {
             />
           </div>
         </div>
-        <div className={styles.flex_section}>
+        <div>
           <button onClick={click}>Bestil værelse</button>
         </div>
-        <div className={styles.flex_section}>
+        <div>
           <h3>Registreret bookninger:</h3>
         </div>
       </div>

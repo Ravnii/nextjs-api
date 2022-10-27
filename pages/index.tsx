@@ -1,53 +1,20 @@
-import Head from 'next/head'
-import { siteTitle } from '../components/layout'
-import Header from '../components/Header'
-import utilStyles from '../styles/utils.module.css'
 import Image from 'next/image'
-import styles from '../styles/layout.module.css'
+import frontpageBanner from '../public/images/frontpage_banner.jpg'
 
 export default function Home() {
   return (
     <>
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
-      <div className={utilStyles.relative}>
-        <Image
-          priority
-          src="/images/frontpage_banner.jpg"
-          layout="fill"
-          objectFit="cover"
-          style={{ zIndex: -1 }}
-          alt={'frontpage banner'}
-        />
-        <div className={styles.dimmer}></div>
-        <div className={styles.caption}>
-          <h1 className={styles.title}>Jesper Ravn Jørgensen</h1>
-          <p className={styles.subtitle}>
-            Software Developer : Scrum master : Azure Manager
-          </p>
-          <p className={styles.subtitle}>PHP - C# - Next.js - Node.js - TypeScript</p>
-        </div>
-      </div>
-      <div className={styles.container}>
-        <section
-          className={`${utilStyles.headingMd} ${utilStyles.columnFlexCenter} ${utilStyles.sectionBackground}`}
-        >
-          <Header text="introduction to me" />
-          <Image
-            priority
-            src="/images/profile.jpg"
-            className={utilStyles.borderCircle}
-            layout="fixed"
-            height={144}
-            width={144}
-            alt={'profile picture'}
-          />
-          <p>I am a senior developer who has using most of my professional life working in PHP and frontend frameworks like Angular and React</p>
-          <p>But this site is for now purely made in Next.js</p>
-          <p>And i am currently working on a new project in C# and .NET Core, which is based on microservice architecture and serverless function</p>
-          <p>Feel free to catch me on <a href="mailto:jspr.ravn@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Go To Social Media: email">jspr.ravn@gmail.com</a></p>
-        </section>
+      <Image
+        priority
+        src={frontpageBanner}
+        alt="Frontpage banner"
+        className="object-cover w-full h-[83vh] absolute top-0 -z-10"
+      />
+      <div className='absolute bg-black/60 top-0 left-0 right-0 bottom-0 -z-[5] h-[83vh]'></div>
+      <div className='text-white relative top-[21vh] md:top-[32vh]'>
+        <h1 className='text-5xl font-light tracking-[5.5px] uppercase text-center leading-tight pb-[10px]'>Jesper Ravn Jørgensen</h1>
+        <p className='text-xs font-medium tracking-[3.5px] uppercase text-center leading-normal opacity-70 pl-2 pr-2 pb-[5px]'>Software Developer : Scrum master : Azure Dev</p>
+        <p className='text-xs font-medium tracking-[3.5px] uppercase text-center leading-normal opacity-70 pl-2 pr-2'>PHP - C# - Next.js - Node.js - TypeScript</p>
       </div>
     </>
   )

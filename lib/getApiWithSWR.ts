@@ -1,8 +1,9 @@
-import { fetcher } from './fetcher'
-import useSWR from 'swr'
+import useSWR from 'swr';
 
-export default function useSWRToGetApiData() {
-  const { data, error } = useSWR(`/api/Calendar`, fetcher);
+const fetcher = (api: string) => fetch(api).then((res) => res.json())
+
+export default function useSWRToGetApiData(apiString: string) {
+  const { data, error } = useSWR(`${apiString}`, fetcher);
 
   return {
     content: data,
