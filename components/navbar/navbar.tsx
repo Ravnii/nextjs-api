@@ -1,84 +1,55 @@
 import { useState } from 'react'
 import Link from 'next/link'
+import NavbarLink from './navbarLink'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import profilePicture from '../../public/images/profile.jpg'
-
-function NavLink({ to, className, setOpen, children }) {
-  const router = useRouter()
-  const isActive = router.pathname === to
-
-  return (
-    <Link
-      href={to}
-      className={`${className} ${
-        isActive
-          ? 'underline decoration-sky-500 uppercase'
-          : 'hover:underline hover:decoration-sky-500'
-      }`}
-      onClick={() => {
-        setOpen(false)
-      }}
-    >
-      {children}
-    </Link>
-  )
-}
-
-function MobileNav({ open, setOpen }) {
-  return (
-    <div
-      className={`absolute top-0 left-0 h-screen w-screen bg-white transform ${
-        open ? '-translate-x-0' : '-translate-x-full'
-      } transition-transform duration-300 ease-in-out filter drop-shadow-md `}
-    >
-      <div className="flex flex-col ml-4 font-normal filter drop-shadow-md mt-32">
-        <NavLink to="/" className={`text-xl my-4`} setOpen={setOpen}>
-          Home
-        </NavLink>
-        <NavLink to="/about" className={`text-xl my-4`} setOpen={setOpen}>
-          About
-        </NavLink>
-        <NavLink to="/projects" className={`text-xl my-4`} setOpen={setOpen}>
-          Projects
-        </NavLink>
-        <NavLink
-          to="https://shopify.jesperravn.com"
-          className={`text-xl my-4`}
-          setOpen={setOpen}
-        >
-          Shopify
-        </NavLink>
-        <NavLink to="/contact" className={`text-xl my-4`} setOpen={setOpen}>
-          Contact
-        </NavLink>
-      </div>
-    </div>
-  )
-}
+import { MoonIcon as SolidMoonIcon } from '@heroicons/react/24/solid'
+import { MoonIcon } from '@heroicons/react/24/outline'
+import MobileNavbar from './mobileNavbar'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const [darkMode, setDarkMode] = useState(false)
   const home = useRouter().pathname === '/'
+
+  function setMode(event) {
+    let toggle = document
+      .getElementsByTagName('html')[0]
+      .classList.toggle('dark')
+
+    document.getElementsByTagName('body')[0].classList.toggle('bg-stone-200')
+    document.getElementsByTagName('body')[0].classList.toggle('bg-black')
+
+    setDarkMode(toggle)
+  }
 
   return (
     <nav
-      className={`${'flex filter drop-shadow-md bg-white px-4 py-4 h-20 items-center justify-between sm:justify-around'} ${
-        home ? 'bg-transparent text-white' : ''
+      className={`${'flex filter drop-shadow-md px-4 py-4 h-20 items-center justify-between sm:justify-around'} ${
+        home ? 'bg-transparent md:text-white' : 'bg-white dark:bg-slate-700'
       }`}
     >
-      <MobileNav open={open} setOpen={setOpen} />
+      <MobileNavbar
+        open={open}
+        setOpen={setOpen}
+        darkMode={darkMode}
+        setMode={setMode}
+      />
 
       <Link href="/" className="text-2xl font-semibold">
         <div className="flex flex-row cursor-pointer">
           <Image
             src={profilePicture}
-            className="mr-3 rounded-full"
+            className="mr-3 rounded-full z-[2]"
             alt="profile picture"
             height={55}
             width={55}
+            onClick={() => {
+              setOpen(false)
+            }}
           />
-          <span className="hidden md:block self-center whitespace-nowrap text-xl font-semibold dark:text-white ml-4">
+          <span className="hidden md:block self-center whitespace-nowrap text-xl font-semibold ml-4">
             Jesper Ravn Jørgensen
           </span>
         </div>
@@ -93,42 +64,55 @@ export default function Navbar() {
         >
           {/* hamburger button */}
           <span
-            className={`h-1 w-full bg-black rounded-lg transform transition duration-300 ease-in-out ${
-              open ? 'rotate-45 translate-y-3.5' : ''
+            className={`h-1 w-full rounded-lg transform transition duration-300 ease-in-out ${
+              open ? 'rotate-45 translate-y-3.5 bg-black' : ''
+            } ${home && !open ? 'bg-white' : 'bg-black'} ${
+              home && open ? 'dark:bg-white' : ''
             }`}
           />
           <span
-            className={`h-1 w-full bg-black rounded-lg transition-all duration-300 ease-in-out ${
+            className={`h-1 w-full rounded-lg transition-all duration-300 ease-in-out ${
               open ? 'w-0' : 'w-full'
+            } ${home && !open ? 'bg-white' : 'bg-black'} ${
+              home && open ? 'dark:bg-white' : ''
             }`}
           />
           <span
-            className={`h-1 w-full bg-black rounded-lg transform transition duration-300 ease-in-out ${
+            className={`h-1 w-full rounded-lg transform transition duration-300 ease-in-out ${
               open ? '-rotate-45 -translate-y-3.5' : ''
+            } ${home && !open ? 'bg-white' : 'bg-black'} ${
+              home && open ? 'dark:bg-white' : ''
             }`}
           />
         </div>
 
         <div className="hidden md:flex">
-          <NavLink to="/" className={`text-xl m-4`} setOpen={setOpen}>
+          <NavbarLink to="/" className={`text-xl m-4`} setOpen={setOpen}>
             Home
-          </NavLink>
-          <NavLink to="/about" className={`text-xl m-4`} setOpen={setOpen}>
+          </NavbarLink>
+          <NavbarLink to="/about" className={`text-xl m-4`} setOpen={setOpen}>
             About
-          </NavLink>
-          <NavLink to="/projects" className={`text-xl m-4`} setOpen={setOpen}>
+          </NavbarLink>
+          <NavbarLink to="/projects" className={`text-xl m-4`} setOpen={setOpen}>
             Projects
-          </NavLink>
-          <NavLink
+          </NavbarLink>
+          <NavbarLink
             to="https://shopify.jesperravn.com"
             className={`text-xl m-4`}
             setOpen={setOpen}
           >
             Shopify
-          </NavLink>
-          <NavLink to="/contact" className={`text-xl m-4`} setOpen={setOpen}>
+          </NavbarLink>
+          <NavbarLink to="/contact" className={`text-xl m-4`} setOpen={setOpen}>
             Contact
-          </NavLink>
+          </NavbarLink>
+          <span className="max-w-fit m-4 cursor-pointer" onClick={setMode}>
+            {darkMode ? (
+              <SolidMoonIcon className="h-6 w-6 text-blue-500" />
+            ) : (
+              <MoonIcon className="h-6 w-6 text-blue-500" />
+            )}
+          </span>
         </div>
       </div>
     </nav>
