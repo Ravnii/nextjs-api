@@ -1,7 +1,10 @@
-# Vanilla JavaScript App
+# Personal website build in Next.js
 
-[Azure Static Web Apps](https://docs.microsoft.com/azure/static-web-apps/overview) allows you to easily build JavaScript apps in minutes. Use this repo with the [quickstart](https://docs.microsoft.com/azure/static-web-apps/getting-started?tabs=vanilla-javascript) to build and customize a new static site.
+My personal website, and place for joyful fun and experiments.
 
-swa start http://localhost:3000 --api-location api --run "npm run dev"
+Build in Next.js and Tailwind css, hosted on Vercel
 
-This repo is used as a starter for a _very basic_ HTML web application using no front-end frameworks.
+## Solutions in this project
+There is a Microservice Azure Functions API backend with a Cosmos DB for MongoDB integration build in multiple tech stacks including .NET, Node.js, Java and Python
+
+There is a Shopify solution on a subdomain

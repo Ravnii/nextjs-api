@@ -4,7 +4,7 @@ function ApiComponent() {
   const [data, setData] = useState('')
 
   useEffect(() => {
-    ;(async function () {
+    (async function () {
       const { text } = await (await fetch(`/api/Calendar`)).json()
       setData(text)
     })()
