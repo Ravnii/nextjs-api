@@ -1,7 +1,11 @@
 import Head from 'next/head'
 import RoomCard from '../../components/room-cards/roomCard'
 
-export default function RoomReservation() {
+type Data = {
+  documentResponse: Array<any>,
+}
+
+export default function RoomReservation({ data }: { data: Data }) {
   return (
     <>
       <Head>
@@ -12,10 +16,20 @@ export default function RoomReservation() {
           Room Reservation
         </h1>
         <div className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
-          <RoomCard type={'sofa'} describtion={'Alle bliver friske af en tur på sofaen efter en våd aften'}/>
-          <RoomCard type={'daybed'} describtion={"Daybed'en får en hver til at sove som en lille baby, også når resten af rummet snurrer"}/>
+          <RoomCard type={'sofa'} description={'Alle bliver friske af en tur på sofaen efter en våd aften'}/>
+          <RoomCard type={'daybed'} description={"Daybed'en får en hver til at sove som en lille baby, også når resten af rummet snurrer"}/>
         </div>
       </div>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const url = process.env.API_HOST;
+  const response = await fetch(url);
+  const data: Data = await response.json();
+
+  return {
+    props: { data },
+  }
 }
