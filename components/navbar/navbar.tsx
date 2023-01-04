@@ -18,9 +18,6 @@ export default function Navbar() {
       .getElementsByTagName('html')[0]
       .classList.toggle('dark')
 
-    document.getElementsByTagName('body')[0].classList.toggle('bg-stone-200')
-    document.getElementsByTagName('body')[0].classList.toggle('bg-black')
-
     setDarkMode(toggle)
   }
 
