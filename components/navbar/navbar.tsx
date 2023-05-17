@@ -90,9 +90,9 @@ export default function Navbar() {
           <NavbarLink to="/about" className={`text-xl m-4`} setOpen={setOpen}>
             About
           </NavbarLink>
-          {/*<NavbarLink to="/projects" className={`text-xl m-4`} setOpen={setOpen}>
+          <NavbarLink to="/projects" className={`text-xl m-4`} setOpen={setOpen}>
             Projects
-          </NavbarLink>*/}
+          </NavbarLink>
           <NavbarLink
             to="https://shopify.jesperravn.com"
             className={`text-xl m-4`}
