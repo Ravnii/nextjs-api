@@ -11,7 +11,7 @@ const postxmltest = (_: NextApiRequest, res: NextApiResponse) => {
       'x-ms-version': '2023-11-03',
       'x-ms-blob-type': 'BlockBlob'
     },
-    body: body
+    body: 'called from M3'
   }).then((result) => {
     res.status(200).json(result)
   });
